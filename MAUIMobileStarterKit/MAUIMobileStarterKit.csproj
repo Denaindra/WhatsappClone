@@ -54,6 +54,8 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.3.0" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,11 +65,9 @@
 	  <None Remove="ViewModels\" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Interface\" />
 	  <Folder Include="Platforms\Android\Renders\" />
 	  <Folder Include="Platforms\iOS\Renders\" />
 	  <Folder Include="Screens\" />
-	  <Folder Include="Utilities\" />
 	  <Folder Include="ViewModels\" />
 	</ItemGroup>
 </Project>
