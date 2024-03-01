@@ -67,7 +67,18 @@
 	<ItemGroup>
 	  <Folder Include="Platforms\Android\Renders\" />
 	  <Folder Include="Platforms\iOS\Renders\" />
-	  <Folder Include="Screens\" />
+	  <Folder Include="Screens\Settings\" />
 	  <Folder Include="ViewModels\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="Screens\ForgotPasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Screens\MainControllerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Screens\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>
