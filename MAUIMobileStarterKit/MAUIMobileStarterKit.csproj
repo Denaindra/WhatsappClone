@@ -54,12 +54,16 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.3.0" />
+		<PackageReference Include="Refit" Version="6.3.2" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.5" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Interface\" />
+	  <None Remove="Resources\Images\camera.png" />
+	  <None Remove="Resources\Images\meuitem.png" />
+	  <None Remove="Resources\Images\search.png" />
 	  <None Remove="Screens\" />
 	  <None Remove="Utilities\" />
 	  <None Remove="ViewModels\" />
