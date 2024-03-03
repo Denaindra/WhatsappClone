@@ -13,9 +13,31 @@
             </HorizontalStackLayout>
         </StackLayout>
     </NavigationPage.TitleView>
-    <Grid RowDefinitions="*" ColumnDefinitions="*">
-        <ListView Grid.Row="0" Grid.Column="0" SeparatorVisibility="Default" HasUnevenRows="True" >
-            
+    <Grid RowDefinitions="*" ColumnDefinitions="*" >
+        <ListView ItemsSource="{Binding RecentChatList}" RowHeight="100" Grid.Row="0" Grid.Column="0" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Frame Padding="0" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="0">
+                                <Grid ColumnSpacing="10" RowDefinitions="*" ColumnDefinitions="Auto,*,Auto" Padding="10">
+                                        <Frame Grid.Row="0" Grid.Column="0" CornerRadius="100" HeightRequest="55" WidthRequest="55" Padding="0" IsClippedToBounds="True">
+                                            <Image Source="{Binding Profilepic}" Aspect="AspectFill"  />
+                                       </Frame>
+                                    <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label Text="Andrew Selmon" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label Text="11/16/24" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"  FontSize="14" TextColor="Gray"/>
+                                        </StackLayout>
+                                        <Label Text="What kind of strategy is better ?"  FontSize="14" TextColor="Gray"/>
+                                    </StackLayout>
+                                    <Image Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand"  Source="rightarrow.png" HeightRequest="12" Aspect="AspectFill" HorizontalOptions="EndAndExpand" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </Grid>
 </ContentPage>
