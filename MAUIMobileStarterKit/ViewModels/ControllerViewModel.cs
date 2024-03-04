@@ -40,9 +40,9 @@ namespace MAUIMobileStarterKit.ViewModels
                 var results = await activityReportsServiceUrl.GetUserRecentChat();
                 if (results.Any())
                 {
+                    RecentChatList = new ObservableCollection<RecentChatListModal>();
                     foreach (var result in results)
                     {
-                        RecentChatList = new ObservableCollection<RecentChatListModal>();
                         RecentChatList.Add(new RecentChatListModal
                         {
                             Id = result.Id,
