@@ -15,16 +15,17 @@
             <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="0" >
                 <ImageButton BackgroundColor="Transparent" Source="camera.png" Aspect="AspectFit" HeightRequest="20" />
                 <ImageButton BackgroundColor="Transparent" Source="search.png" Aspect="AspectFit" HeightRequest="20"/>
-                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" />
+                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" Clicked="SettingClicked" />
             </HorizontalStackLayout>
         </StackLayout>
     </NavigationPage.TitleView>
-    <Grid RowDefinitions="*" ColumnDefinitions="*">
-        <ListView ItemsSource="{Binding RecentChatList}" RowHeight="100" Grid.Row="0" Grid.Column="0" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True" >
+    <Grid RowDefinitions="*" ColumnDefinitions="*" BackgroundColor="#128c7e" >
+
+        <ListView Margin="0,50,0,0" BackgroundColor="WhiteSmoke" ItemsSource="{Binding RecentChatList}" RowHeight="100" Grid.Row="0" Grid.Column="0" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Margin="0" BackgroundColor="Yellow">
+                        <StackLayout Margin="0">
                             <Frame Padding="0" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="0">
                                 <Grid ColumnSpacing="10" RowDefinitions="*" ColumnDefinitions="Auto,*,Auto" Padding="10" BackgroundColor="WhiteSmoke">
                                         <Frame Grid.Row="0" Grid.Column="0" CornerRadius="100" HeightRequest="55" WidthRequest="55" Padding="0" IsClippedToBounds="True">

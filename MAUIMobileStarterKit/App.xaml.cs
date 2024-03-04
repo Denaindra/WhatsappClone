@@ -7,7 +7,9 @@ public partial class App : Application
     public App(MainControllerPage mainPage)
     {
         InitializeComponent();
-        MainPage = new NavigationPage(mainPage);
+        var navigationBarColour = new NavigationPage(mainPage);
+        navigationBarColour.BarBackgroundColor = Color.FromArgb("#128c7e");
+        MainPage = new NavigationPage(navigationBarColour);
         InititateAllCutomUICmsponets();
     }
 
