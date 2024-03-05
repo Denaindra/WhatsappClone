@@ -39,6 +39,7 @@ public static class MauiProgram
         //Views
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<MainControllerPage>();
+        builder.Services.AddTransient<ForgotPasswordPage>();
 
         //ViewModels
         builder.Services.AddTransient<MainPageViewModels>();

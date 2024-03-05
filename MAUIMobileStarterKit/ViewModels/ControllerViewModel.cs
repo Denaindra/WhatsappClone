@@ -1,6 +1,7 @@
 ﻿using MAUIMobileStarterKit.Interface;
 using MAUIMobileStarterKit.Interface.RestApiService;
 using MAUIMobileStarterKit.Models.UI;
+using MAUIMobileStarterKit.Screens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,10 +17,13 @@ namespace MAUIMobileStarterKit.ViewModels
         private ObservableCollection<RecentChatListModal> recentChatList;
         private readonly IChatResults activityReportsServiceUrl;
 
-        public ControllerViewModel(ILoading loading)
+        private readonly ForgotPasswordPage forgotPasswordPage;
+
+        public ControllerViewModel(ILoading loading, ForgotPasswordPage forgotPasswordPage)
         {
             this.loading = loading;
             activityReportsServiceUrl = RecentChatServiceEndPoint();
+            this.forgotPasswordPage = forgotPasswordPage;
         }
         public ObservableCollection<RecentChatListModal> RecentChatList
         {
@@ -59,6 +63,22 @@ namespace MAUIMobileStarterKit.ViewModels
             }finally
             {
                 loading.EndIndiCator();
+            }
+        }
+
+        public void AlertSheetActions(string action)
+        {
+            switch(action)
+            {
+                case "Foget Password":
+                    PushAsyncPage(forgotPasswordPage);
+                    break;
+
+                case "test12":
+                    break;
+
+                case "test234":
+                    break;
             }
         }
     }
