@@ -14,6 +14,11 @@ public partial class ChatListPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        vm.DownloadOntimeChatList();
+    }
+
+    private void ChatListRefreshing(object sender, EventArgs e)
+    {
         vm.LoadindChatThreads();
     }
 }

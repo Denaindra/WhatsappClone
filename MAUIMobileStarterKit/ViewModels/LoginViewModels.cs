@@ -6,6 +6,7 @@ using MAUIMobileStarterKit.Interface.RestApiService;
 using MAUIMobileStarterKit.Models.API.Request;
 using MAUIMobileStarterKit.Models.API.Response;
 using MAUIMobileStarterKit.Screens;
+using static SQLite.SQLite3;
 
 namespace MAUIMobileStarterKit.ViewModels
 {
@@ -58,6 +59,15 @@ namespace MAUIMobileStarterKit.ViewModels
             loading.EndIndiCator();
         }
 
+        public async Task<bool> IsUserAlredyLogged()
+        {
+            var token = await localStorage.GetAsync("token");
+            if (!string.IsNullOrEmpty(token))
+            {
+               return true;
+            }
+            return false;
+        }
         public async Task<bool> CheckBioMetrixAuthontication()
         {
             var request = new AuthenticationRequestConfiguration("Validate that you have fingers", "Because without them you will not be able to access");
@@ -71,7 +81,6 @@ namespace MAUIMobileStarterKit.ViewModels
                 return false;
             }
         }
-
         public async Task<bool> CheckUserAuthonticator()
         {
             try
@@ -102,7 +111,6 @@ namespace MAUIMobileStarterKit.ViewModels
             loading.EndIndiCator();
             return false;
         }
-
         public void NavigateToChatListPage()
         {
             PushAsyncPage(chatListPage);

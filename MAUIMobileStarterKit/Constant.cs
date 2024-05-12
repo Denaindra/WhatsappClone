@@ -20,5 +20,10 @@ namespace MAUIMobileStarterKit
 
         public static string DatabasePath =>
             Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
+
+        public const string MYAPPBASEDURL = "https://www.archivecontrol.com/dev/api/";
+        public const string BASEDURL = "https://mychat.free.beeceptor.com/";
+
+        public static bool IsChatListDownloaded;
     }
 }

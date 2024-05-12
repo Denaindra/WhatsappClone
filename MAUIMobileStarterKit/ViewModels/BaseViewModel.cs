@@ -34,7 +34,7 @@ namespace MAUIMobileStarterKit.ViewModels
         {
             if (userAuthonticatorServiceUrl is null)
             {
-                userAuthonticatorServiceUrl = RestService.For<IUserAuthonticator>(Constants.MYAPPBASEDURL);
+                userAuthonticatorServiceUrl = RestService.For<IUserAuthonticator>(Constant.MYAPPBASEDURL);
             }
             return userAuthonticatorServiceUrl;
         }

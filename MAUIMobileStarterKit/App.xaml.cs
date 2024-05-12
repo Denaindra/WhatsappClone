@@ -1,10 +1,11 @@
 ﻿using MAUIMobileStarterKit.CustomViews.Controls;
+using MAUIMobileStarterKit.Interface;
 using MAUIMobileStarterKit.Screens;
 namespace MAUIMobileStarterKit;
 
 public partial class App : Application
 {
-    public App(MainPage mainPage)
+    public App(MainPage mainPage, ILocalStorage localStorage)
     {
         InitializeComponent();
         //var navigationBarColour = new NavigationPage(mainPage);

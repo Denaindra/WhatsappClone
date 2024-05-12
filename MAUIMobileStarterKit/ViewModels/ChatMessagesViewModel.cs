@@ -35,6 +35,13 @@ namespace MAUIMobileStarterKit.ViewModels
             this.loading = loading;
         }
 
+        public void DownloadOntimeChatList()
+        {
+            if (!Constant.IsChatListDownloaded)
+            {
+                LoadindChatThreads();
+            }
+        }
         public async void LoadindChatThreads()
         {
             try
@@ -75,6 +82,7 @@ namespace MAUIMobileStarterKit.ViewModels
                         };
                         MessageThreadModalList.Add(messageThread);
                     }
+                    Constant.IsChatListDownloaded = true;
                 }
                 loading.EndIndiCator();
             }

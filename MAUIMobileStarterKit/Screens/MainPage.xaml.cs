@@ -5,13 +5,11 @@ namespace MAUIMobileStarterKit.Screens;
 
 public partial class MainPage : ContentPage
 {
-	private readonly IUserDialogs userDialogs;
     private readonly LoginViewModels vm;
 
-    public MainPage(LoginViewModels viewModel, IUserDialogs userDialogs)
+    public MainPage(LoginViewModels viewModel)
 	{
 		InitializeComponent();
-		this.userDialogs = userDialogs;
         this.vm = viewModel;
         BindingContext = viewModel;
         vm.Email = "pikachu.ac@yopmail.com";
@@ -19,8 +17,18 @@ public partial class MainPage : ContentPage
         vm.navigation = Navigation;
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
+        var results = await vm.IsUserAlredyLogged();
+        if (results)
+        {
+            vm.NavigateToChatListPage();
+        }
+        else
+        {
+            mainlayout.IsVisible = true;
+        }
+
         base.OnAppearing();
     }
 
