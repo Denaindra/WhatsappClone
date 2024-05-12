@@ -11,21 +11,32 @@ namespace MAUIMobileStarterKit.ViewModels
         public INavigation navigation;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static IChatResults activityReportsServiceUrl;
-        public const string BASEDURL = "https://mychat.free.beeceptor.com/";
+        private static IThreadResults threadResults;
+        private static IUserAuthonticator userAuthonticatorServiceUrl;
 
+        public const string BASEDURL = "https://www.archivecontrol.com/dev/api";
+  
 
         public BaseViewModel()
 		{
 		}
 
-        public IChatResults RecentChatServiceEndPoint()
+        public IThreadResults GetAllThareadInfos()
         {
-            if (activityReportsServiceUrl is null)
+            if (threadResults is null)
             {
-                activityReportsServiceUrl = RestService.For<IChatResults>(BASEDURL);
+                threadResults = RestService.For<IThreadResults>(BASEDURL);
             }
-            return activityReportsServiceUrl;
+            return threadResults;
+        }
+
+        public IUserAuthonticator GetMyAppAuthonticatorEndpoint()
+        {
+            if (userAuthonticatorServiceUrl is null)
+            {
+                userAuthonticatorServiceUrl = RestService.For<IUserAuthonticator>(Constants.MYAPPBASEDURL);
+            }
+            return userAuthonticatorServiceUrl;
         }
 
         public async void PushModalAsync(Page page)

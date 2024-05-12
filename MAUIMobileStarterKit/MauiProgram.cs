@@ -4,6 +4,8 @@ using MAUIMobileStarterKit.Screens;
 using MAUIMobileStarterKit.Utilities;
 using MAUIMobileStarterKit.ViewModels;
 using Microsoft.Extensions.Logging;
+using Plugin.Fingerprint.Abstractions;
+using Plugin.Fingerprint;
 
 namespace MAUIMobileStarterKit;
 
@@ -40,14 +42,20 @@ public static class MauiProgram
         builder.Services.AddTransient<MainPage>();
         builder.Services.AddTransient<MainControllerPage>();
         builder.Services.AddTransient<ForgotPasswordPage>();
+        builder.Services.AddTransient<ChatListPage>();
 
         //ViewModels
-        builder.Services.AddTransient<MainPageViewModels>();
+        builder.Services.AddTransient<LoginViewModels>();
         builder.Services.AddTransient<ControllerViewModel>();
+        builder.Services.AddTransient<ChatMessagesViewModel>();
 
         //Services
         builder.Services.AddSingleton<ILoading, Loading>();
+        builder.Services.AddSingleton<ILocalStorage, LocalStorage>();
         builder.Services.AddSingleton<TodoItemDatabase>();
+        builder.Services.AddSingleton(typeof(IFingerprint), CrossFingerprint.Current);
+
+
 
 
 #if DEBUG

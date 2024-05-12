@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIMobileStarterKit.Screens.ChatListPage"
+             xmlns:converter="clr-namespace:MAUIMobileStarterKit.Converters"
+             Title="ChatListPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:MessageReadConverter x:Key="msgConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Label Text="MyChat" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="20"/>
+            <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="0" >
+                <ImageButton BackgroundColor="Transparent" Source="camera.png" Aspect="AspectFit" HeightRequest="20" />
+                <ImageButton BackgroundColor="Transparent" Source="search.png" Aspect="AspectFit" HeightRequest="20"/>
+                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" />
+            </HorizontalStackLayout>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
+        <StackLayout Grid.Row="0" Grid.Column="0"   BackgroundColor="#128c7e"  >
+            <VerticalStackLayout Margin="10,0,0,0">
+                <Label Text="Chat" TextColor="White" FontAttributes="Bold" Padding="16,0,0,0" FontSize="15"/>
+                <BoxView HorizontalOptions="StartAndExpand" HeightRequest="3" BackgroundColor="White" Color="White" WidthRequest="70"/>
+            </VerticalStackLayout>
+        </StackLayout>
+        <ListView Margin="0,0,0,0" BackgroundColor="WhiteSmoke" ItemsSource="{Binding MessageThreadModalList}" RowHeight="100" Grid.Row="1" Grid.Column="0" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="0">
+                            <Frame Padding="0" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="0" >
+                                <Grid ColumnSpacing="10" RowDefinitions="*" ColumnDefinitions="Auto,*,Auto" Padding="10" BackgroundColor="WhiteSmoke">
+                                    <Frame Grid.Row="0" Grid.Column="0" CornerRadius="100" HeightRequest="55" WidthRequest="55" Padding="0" IsClippedToBounds="True">
+                                        <Image Aspect="AspectFill" BackgroundColor="Purple"  />
+                                    </Frame>
+                                    <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding ThreadTitle}" FontAttributes="Bold" FontSize="15" TextColor="Black"/>
+                                            <Label Text="{Binding LastUpdate}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand"  FontSize="10" TextColor="Gray"/>
+                                        </StackLayout>
+                                        <HorizontalStackLayout >
+                                            <!--<Image Source="{Binding IsSeenLastChat, Converter={StaticResource msgConverter}}" Aspect="AspectFit" HeightRequest="11" WidthRequest="17"/>-->
+                                            <Label Text="{Binding ThreadName}"  FontSize="14" TextColor="Gray"/>
+                                        </HorizontalStackLayout>
+
+                                    </StackLayout>
+                                    <Image Grid.Row="0" Grid.Column="2" VerticalOptions="CenterAndExpand"  Source="rightarrow.png" HeightRequest="12" Aspect="AspectFill" HorizontalOptions="EndAndExpand" />
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

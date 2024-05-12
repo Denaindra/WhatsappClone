@@ -2,14 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MAUIMobileStarterKit.Screens.MainPage"
-             BackgroundColor="AliceBlue"
              Title="MainPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
+    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Spacing="10">
+        <Label FontFamily="OpenSansSemibold"
+            Text="Welcome to My Chat" TextColor="Green" FontSize="20"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-             <Button Text="Start" Clicked="Button_Clicked_1" />
-        <Entry Text="hellow words" BackgroundColor="Green" WidthRequest="200" />
-    </VerticalStackLayout>
+
+        <Entry Placeholder="Email" FontFamily="OpenSansSemibold" TextColor="Black"  WidthRequest="200" Text="{Binding Email}" />
+        <Entry Placeholder="Password" FontFamily="OpenSansSemibold" TextColor="Black"  WidthRequest="200" IsPassword="True" Text="{Binding Password}" />
+
+        <Button Text="Login" FontAttributes="Bold" TextColor="White" FontSize="15" Clicked="UserAuthontication" Margin="30,0" CornerRadius="10" BackgroundColor="Green"/>
+        
+        
+    </StackLayout>
 </ContentPage>

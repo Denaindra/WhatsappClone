@@ -22,7 +22,7 @@ namespace MAUIMobileStarterKit.ViewModels
         public ControllerViewModel(ILoading loading, ForgotPasswordPage forgotPasswordPage)
         {
             this.loading = loading;
-            activityReportsServiceUrl = RecentChatServiceEndPoint();
+           //activityReportsServiceUrl = RecentChatServiceEndPoint();
             this.forgotPasswordPage = forgotPasswordPage;
         }
         public ObservableCollection<RecentChatListModal> RecentChatList

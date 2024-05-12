@@ -4,12 +4,12 @@ namespace MAUIMobileStarterKit;
 
 public partial class App : Application
 {
-    public App(MainControllerPage mainPage)
+    public App(MainPage mainPage)
     {
         InitializeComponent();
-        var navigationBarColour = new NavigationPage(mainPage);
-        navigationBarColour.BarBackgroundColor = Color.FromArgb("#128c7e");
-        MainPage = new NavigationPage(navigationBarColour);
+        //var navigationBarColour = new NavigationPage(mainPage);
+      //  navigationBarColour.BarBackgroundColor = Color.FromArgb("#128c7e");
+        MainPage = new NavigationPage(mainPage);
         InititateAllCutomUICmsponets();
     }
 
