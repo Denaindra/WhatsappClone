@@ -27,8 +27,8 @@
                 <BoxView HorizontalOptions="StartAndExpand" HeightRequest="3" BackgroundColor="White" Color="White" WidthRequest="70"/>
             </VerticalStackLayout>
         </StackLayout>
-        <ListView Margin="0,0,0,0" BackgroundColor="WhiteSmoke" ItemsSource="{Binding MessageThreadModalList}" 
-                   IsPullToRefreshEnabled="true" Refreshing="ChatListRefreshing"
+        <ListView x:Name="listView" Margin="0,0,0,0" BackgroundColor="WhiteSmoke" ItemsSource="{Binding MessageThreadModalList}" 
+                   IsPullToRefreshEnabled="true" Refreshing="ChatListRefreshing" 
                   RowHeight="100" Grid.Row="1" Grid.Column="0" SelectionMode="None" SeparatorVisibility="Default" HasUnevenRows="True" >
             <ListView.ItemTemplate>
                 <DataTemplate>

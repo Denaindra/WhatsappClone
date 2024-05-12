@@ -39,14 +39,17 @@ namespace MAUIMobileStarterKit.ViewModels
         {
             if (!Constant.IsChatListDownloaded)
             {
-                LoadindChatThreads();
+                LoadindChatThreads(true);
             }
         }
-        public async void LoadindChatThreads()
+        public async void LoadindChatThreads(bool customRefresh)
         {
             try
             {
-                loading.StartIndicator();
+                if (customRefresh)
+                {
+                    loading.StartIndicator();
+                }
                 var threadRequest = new ThreadInfoRequestModel()
                 {
                     t = await localStorage.GetAsync("token"),
@@ -84,11 +87,17 @@ namespace MAUIMobileStarterKit.ViewModels
                     }
                     Constant.IsChatListDownloaded = true;
                 }
-                loading.EndIndiCator();
+                if (customRefresh)
+                {
+                    loading.EndIndiCator();
+                }
             }
             catch (Exception ex)
             {
-                loading.EndIndiCator();
+                if (customRefresh)
+                {
+                    loading.EndIndiCator();
+                }
             }
         }
     }

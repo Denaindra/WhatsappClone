@@ -19,6 +19,8 @@ public partial class ChatListPage : ContentPage
 
     private void ChatListRefreshing(object sender, EventArgs e)
     {
-        vm.LoadindChatThreads();
+        vm.LoadindChatThreads(false);
+        listView.IsRefreshing = false;
+
     }
 }
