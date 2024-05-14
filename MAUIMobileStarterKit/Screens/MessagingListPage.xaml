@@ -18,14 +18,14 @@
             </HorizontalStackLayout>
         </StackLayout>
     </NavigationPage.TitleView>
-    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="*">
         <StackLayout Grid.Row="0" Grid.Column="0"   BackgroundColor="#128c7e"  >
             <VerticalStackLayout Margin="10,0,0,0">
                 <Label Text="Chat" TextColor="White" FontAttributes="Bold" Padding="16,0,0,0" FontSize="15"/>
                 <BoxView HorizontalOptions="StartAndExpand" HeightRequest="3" BackgroundColor="White" Color="White" WidthRequest="70"/>
             </VerticalStackLayout>
         </StackLayout>
-        <ListView ItemsSource="{Binding ChatConversionModalList}" SelectionMode="None"  Grid.Row="1" Grid.Column="0" SeparatorVisibility="None"
+        <ListView x:Name="listview" ItemsSource="{Binding ChatConversionModalList}" SelectionMode="None"  Grid.Row="1" Grid.Column="0" SeparatorVisibility="None"
                   HasUnevenRows="True" CachingStrategy="RetainElement" BackgroundColor="#128c7e">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -44,5 +44,9 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackLayout Spacing="10" Grid.Row="2" Grid.Column="0" Orientation="Horizontal" BackgroundColor="#128c7e"  HorizontalOptions="FillAndExpand">
+            <Entry TextColor="Black" Placeholder="enter message" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+            <Button Text=">" CornerRadius="10" HeightRequest="50" WidthRequest="80" Clicked="SendMsgBtnClicked" />
+        </StackLayout>
     </Grid>
 </ContentPage>
