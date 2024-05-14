@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUIMobileStarterKit.Screens.MessagingListPage"
+             xmlns:converter="clr-namespace:MAUIMobileStarterKit.Converters">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseGridColoumConverter x:Key="gridColumConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+            <Label Text="MyChat" VerticalTextAlignment="Center" FontAttributes="Bold" FontSize="20"/>
+            <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="0" >
+                <ImageButton BackgroundColor="Transparent" Source="camera.png" Aspect="AspectFit" HeightRequest="20" />
+                <ImageButton BackgroundColor="Transparent" Source="search.png" Aspect="AspectFit" HeightRequest="20"/>
+                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" />
+            </HorizontalStackLayout>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*">
+        <StackLayout Grid.Row="0" Grid.Column="0"   BackgroundColor="#128c7e"  >
+            <VerticalStackLayout Margin="10,0,0,0">
+                <Label Text="Chat" TextColor="White" FontAttributes="Bold" Padding="16,0,0,0" FontSize="15"/>
+                <BoxView HorizontalOptions="StartAndExpand" HeightRequest="3" BackgroundColor="White" Color="White" WidthRequest="70"/>
+            </VerticalStackLayout>
+        </StackLayout>
+        <ListView ItemsSource="{Binding ChatConversionModalList}" SelectionMode="None"  Grid.Row="1" Grid.Column="0" SeparatorVisibility="None"
+                  HasUnevenRows="True" CachingStrategy="RetainElement" BackgroundColor="#128c7e">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*" ColumnDefinitions="*,*" Margin="20,10,20,0" >
+                            <Frame Grid.Row="0" Grid.Column="{Binding IsLogginUser, Converter={StaticResource gridColumConverter}}"  Padding="0" BackgroundColor="WhiteSmoke" HasShadow="False" CornerRadius="10" BorderColor="Transparent">
+                                <Grid RowDefinitions="*,*" ColumnDefinitions="*" Padding="5" BackgroundColor="WhiteSmoke" >
+                                    <StackLayout>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding ChatMessage}"  FontSize="14" TextColor="Gray" LineBreakMode="NoWrap" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding DateFormatted}"  FontSize="6" TextColor="Gray" />
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

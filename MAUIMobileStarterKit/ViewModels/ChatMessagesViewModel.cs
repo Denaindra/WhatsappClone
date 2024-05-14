@@ -3,6 +3,8 @@ using MAUIMobileStarterKit.Interface.RestApiService;
 using MAUIMobileStarterKit.Models.API.Request;
 using MAUIMobileStarterKit.Models.API.Response;
 using MAUIMobileStarterKit.Models.UI;
+using MAUIMobileStarterKit.Screens;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,11 +17,25 @@ namespace MAUIMobileStarterKit.ViewModels
     public class ChatMessagesViewModel:BaseViewModel
     {
         private readonly IThreadResults threadResults;
+        private readonly IChatResults chatResults;
         private readonly ILocalStorage localStorage;
         private readonly ILoading loading;
 
+        private MessagingListPage MessagingListPage;
         private ObservableCollection<MessageThreadModal> messageThreadModalList;
+        public ObservableCollection<ChatConversionModal> chatConversionModalList;
 
+        public ObservableCollection<ChatConversionModal> ChatConversionModalList
+        {
+            get { 
+                return chatConversionModalList; 
+            }
+            set
+            {
+                chatConversionModalList = value;
+                NotifyPropertyChanged(nameof(ChatConversionModalList));
+            }
+        }
         public ObservableCollection<MessageThreadModal> MessageThreadModalList
         {
             get { return messageThreadModalList; }
@@ -27,14 +43,14 @@ namespace MAUIMobileStarterKit.ViewModels
                 NotifyPropertyChanged(nameof(MessageThreadModalList));
             }
         }
-
-        public ChatMessagesViewModel(ILoading loading, ILocalStorage localStorage)
+        public ChatMessagesViewModel(ILoading loading, ILocalStorage localStorage, MessagingListPage messagingListPage)
         {
             threadResults = GetAllThareadInfos();
+            chatResults = GetChatConversionResults();
             this.localStorage = localStorage;
             this.loading = loading;
+            this.MessagingListPage = messagingListPage;
         }
-
         public void DownloadOntimeChatList()
         {
             if (!Constant.IsChatListDownloaded)
@@ -62,7 +78,7 @@ namespace MAUIMobileStarterKit.ViewModels
                     MessageThreadModalList = new ObservableCollection<MessageThreadModal>();
                    foreach (var threadItem in threadInfoResponse)
                     {
-                        var threadInfoRequest = new GetOneThreadRequestMopdal()
+                        var threadInfoRequest = new GetOneThreadRequestModal()
                         {
                             t = await localStorage.GetAsync("token"),
                             idT = threadItem.idT,
@@ -99,6 +115,52 @@ namespace MAUIMobileStarterKit.ViewModels
                     loading.EndIndiCator();
                 }
             }
+        }
+        public async Task<bool> SelectedChat(object item)
+        {
+            try
+            {
+                loading.StartIndicator();
+                var selectedThread = (MessageThreadModal)item;
+                var threadRequest = new ChatConversionRequestModal()
+                {
+                    t = await localStorage.GetAsync("token"),
+                    idCU = selectedThread.ChatUserId,
+                    f = await localStorage.GetAsync("fingerPrintLoggingId"),
+                    idT = selectedThread.ThreadID,
+                    fU = true,
+                };
+                
+                var chatCoversionResults = await chatResults.GetChatMessages(threadRequest);
+                if (chatCoversionResults.Any())
+                {
+                    ChatConversionModalList = new ObservableCollection<ChatConversionModal>();
+                    foreach (var chat in chatCoversionResults)
+                    {
+                        ChatConversionModalList.Add(new ChatConversionModal() {
+                        ChatId = chat.id,
+                        ChatUserId = chat.idCU,
+                        ChatMessage = chat.msg,
+                        ChatThread = selectedThread.ThreadID,
+                        IsLogginUser = chat.idCU == selectedThread.ChatUserId ? true : false,
+                        DateFormatted = chat.date_formatted
+                        });
+                    }
+                }
+                loading.EndIndiCator();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                loading.EndIndiCator();
+                return false;   
+            }
+        }
+
+        public void NavigateToChatsListPage()
+        {
+            MessagingListPage.vm = this;
+            PushAsyncPage(MessagingListPage);
         }
     }
 }

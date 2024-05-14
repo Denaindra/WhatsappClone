@@ -12,6 +12,7 @@ namespace MAUIMobileStarterKit.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private static IThreadResults threadResults;
+        private static IChatResults iChatResult;
         private static IUserAuthonticator userAuthonticatorServiceUrl;
 
         public const string BASEDURL = "https://www.archivecontrol.com/dev/api";
@@ -28,6 +29,14 @@ namespace MAUIMobileStarterKit.ViewModels
                 threadResults = RestService.For<IThreadResults>(BASEDURL);
             }
             return threadResults;
+        }
+        public IChatResults GetChatConversionResults()
+        {
+            if (iChatResult is null)
+            {
+                iChatResult = RestService.For<IChatResults>(BASEDURL);
+            }
+            return iChatResult;
         }
 
         public IUserAuthonticator GetMyAppAuthonticatorEndpoint()

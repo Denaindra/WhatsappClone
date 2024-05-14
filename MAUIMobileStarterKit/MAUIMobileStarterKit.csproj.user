@@ -16,6 +16,9 @@
     <MauiXaml Update="Screens\MainControllerPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
+    <MauiXaml Update="Screens\MessagingListPage.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="Screens\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

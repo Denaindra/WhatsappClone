@@ -15,6 +15,6 @@ namespace MAUIMobileStarterKit.Interface.RestApiService
         Task<ThreadInfoResponseModel[]> GetThreadInfo(ThreadInfoRequestModel loginRequest);
 
         [Post("/get_one_thread.php")]
-        Task<GetOneThreadResponseModal> GetOneThread(GetOneThreadRequestMopdal getOneThreadRequest);
+        Task<GetOneThreadResponseModal> GetOneThread(GetOneThreadRequestModal getOneThreadRequest);
     }
 }

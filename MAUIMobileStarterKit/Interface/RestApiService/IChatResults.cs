@@ -1,4 +1,6 @@
 ﻿using MAUIMobileStarterKit.Models.API;
+using MAUIMobileStarterKit.Models.API.Request;
+using MAUIMobileStarterKit.Models.API.Response;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -12,5 +14,8 @@ namespace MAUIMobileStarterKit.Interface.RestApiService
     {
         [Get("/getUserChats")]
         Task<RecentChatListModal[]> GetUserRecentChat();
+
+        [Post("/get_messages.php")]
+        Task<ChatConversionResponseModal[]> GetChatMessages(ChatConversionRequestModal chatConversionRequest);
     }
 }
