@@ -27,7 +27,7 @@ public partial class ChatListPage : ContentPage
 
     private async void ChatThreadItemTapped(object sender, ItemTappedEventArgs e)
     {
-        var isChatsLoaded = await vm.SelectedChat(e.Item);
+        var isChatsLoaded = await vm.LoadSelectedChatList(e.Item);
        if (isChatsLoaded)
         {
             vm.NavigateToChatsListPage();

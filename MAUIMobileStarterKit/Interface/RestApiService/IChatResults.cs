@@ -17,5 +17,11 @@ namespace MAUIMobileStarterKit.Interface.RestApiService
 
         [Post("/get_messages.php")]
         Task<ChatConversionResponseModal[]> GetChatMessages(ChatConversionRequestModal chatConversionRequest);
+
+        [Post("/send_message.php")]
+        Task<ChatMessageResponse> SentChatMessage(ChatMessageRequest chatMessageRequest);
+
+        [Post("/get_last_update.php")]
+        Task<GetLastUpdatredChatsResponse> GetLastUpdateChats(GetLastUpdateChatsModleResquest getLastUpdateChats);
     }
 }

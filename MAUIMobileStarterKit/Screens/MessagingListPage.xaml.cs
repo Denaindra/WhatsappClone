@@ -25,8 +25,24 @@ public partial class MessagingListPage : ContentPage
       listview.ScrollTo(lastItem, ScrollToPosition.End, false);
     }
 
-    private void SendMsgBtnClicked(object sender, EventArgs e)
+    private async void SendMsgBtnClicked(object sender, EventArgs e)
     {
-        LoadToLastElement();
+       var isUpdatedLatestChats =  await Task.Run(() => BackgroundMethod());
+        if (isUpdatedLatestChats)
+        {
+            LoadToLastElement();
+        }
+    }
+
+    private async Task<bool> BackgroundMethod()
+    {
+        var isSuccess = await vm.SendMessage();
+        if (isSuccess)
+        {
+            var isUpdatedLatestChats = await vm.UpdateTheChatsList();
+
+            return isUpdatedLatestChats;
+        }
+        return false;
     }
 }

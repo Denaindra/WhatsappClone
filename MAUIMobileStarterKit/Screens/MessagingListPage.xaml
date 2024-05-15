@@ -45,7 +45,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackLayout Spacing="10" Grid.Row="2" Grid.Column="0" Orientation="Horizontal" BackgroundColor="#128c7e"  HorizontalOptions="FillAndExpand">
-            <Entry TextColor="Black" Placeholder="enter message" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
+            <Entry TextColor="Black" Text="{Binding NewMessage}" Placeholder="enter message" BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand"/>
             <Button Text=">" CornerRadius="10" HeightRequest="50" WidthRequest="80" Clicked="SendMsgBtnClicked" />
         </StackLayout>
     </Grid>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MAUIMobileStarterKit.Models.API.Request
 {
-    public class ChatConversionRequestModal
+    public class ChatMessageRequest
     {
         [JsonProperty("t")]
         public string t { get; set; }
@@ -21,10 +21,7 @@ namespace MAUIMobileStarterKit.Models.API.Request
         [JsonProperty("idT")]
         public long idT { get; set; }
 
-        [JsonProperty("fU")]
-        public bool fU { get; set; }
-
-        [JsonProperty("lU")]
-        public string lU { get; set; }
+        [JsonProperty("m")]
+        public string m { get; set; }
     }
 }
