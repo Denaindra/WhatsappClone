@@ -16,7 +16,7 @@
             <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="0" >
                 <ImageButton BackgroundColor="Transparent" Source="camera.png" Aspect="AspectFit" HeightRequest="20" />
                 <ImageButton BackgroundColor="Transparent" Source="search.png" Aspect="AspectFit" HeightRequest="20"/>
-                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" />
+                <ImageButton BackgroundColor="Transparent" Source="meuitem.png" Aspect="AspectFit" HeightRequest="20" Clicked="SettingClicked"/>
             </HorizontalStackLayout>
         </StackLayout>
     </NavigationPage.TitleView>

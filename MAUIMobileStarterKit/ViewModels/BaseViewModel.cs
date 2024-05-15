@@ -65,6 +65,7 @@ namespace MAUIMobileStarterKit.ViewModels
         {
             await navigation.PopModalAsync();
         }
+
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged != null)

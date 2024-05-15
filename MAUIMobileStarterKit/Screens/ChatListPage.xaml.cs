@@ -17,14 +17,12 @@ public partial class ChatListPage : ContentPage
         base.OnAppearing();
         vm.DownloadOntimeChatList();
     }
-
     private void ChatListRefreshing(object sender, EventArgs e)
     {
         vm.LoadindChatThreads(false);
         listView.IsRefreshing = false;
 
     }
-
     private async void ChatThreadItemTapped(object sender, ItemTappedEventArgs e)
     {
         var isChatsLoaded = await vm.LoadSelectedChatList(e.Item);
@@ -32,5 +30,10 @@ public partial class ChatListPage : ContentPage
         {
             vm.NavigateToChatsListPage();
         }
+    }
+    private async void SettingClicked(object sender, EventArgs e)
+    {
+        string action = await DisplayActionSheet("ActionSheet: Send to?", "Cancel", null, "Foget Password", "setting 1", "setting 2");
+        vm.AlertSheetActions(action);
     }
 }

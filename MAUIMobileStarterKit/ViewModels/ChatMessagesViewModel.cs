@@ -25,8 +25,30 @@ namespace MAUIMobileStarterKit.ViewModels
         private readonly ILoading loading;
 
         private MessagingListPage MessagingListPage;
+        private ForgotPasswordPage forgotPasswordPage;
+
         private ObservableCollection<MessageThreadModal> messageThreadModalList;
         public ObservableCollection<ChatConversionModal> chatConversionModalList;
+
+        public ChatMessagesViewModel(ILoading loading, ILocalStorage localStorage, MessagingListPage messagingListPage, ForgotPasswordPage forgotPasswordPage)
+        {
+            threadResults = GetAllThareadInfos();
+            chatResults = GetChatConversionResults();
+            this.localStorage = localStorage;
+            this.loading = loading;
+            this.MessagingListPage = messagingListPage;
+            this.forgotPasswordPage = forgotPasswordPage;
+        }
+
+        public ObservableCollection<MessageThreadModal> MessageThreadModalList
+        {
+            get { return messageThreadModalList; }
+            set
+            {
+                messageThreadModalList = value;
+                NotifyPropertyChanged(nameof(MessageThreadModalList));
+            }
+        }
 
         public ObservableCollection<ChatConversionModal> ChatConversionModalList
         {
@@ -51,23 +73,6 @@ namespace MAUIMobileStarterKit.ViewModels
             }
         }
 
-        public ObservableCollection<MessageThreadModal> MessageThreadModalList
-        {
-            get { return messageThreadModalList; }
-            set
-            {
-                messageThreadModalList = value;
-                NotifyPropertyChanged(nameof(MessageThreadModalList));
-            }
-        }
-        public ChatMessagesViewModel(ILoading loading, ILocalStorage localStorage, MessagingListPage messagingListPage)
-        {
-            threadResults = GetAllThareadInfos();
-            chatResults = GetChatConversionResults();
-            this.localStorage = localStorage;
-            this.loading = loading;
-            this.MessagingListPage = messagingListPage;
-        }
         public void DownloadOntimeChatList()
         {
             if (!Constant.IsChatListDownloaded)
@@ -259,6 +264,22 @@ namespace MAUIMobileStarterKit.ViewModels
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public void AlertSheetActions(string action)
+        {
+            switch (action)
+            {
+                case "Foget Password":
+                    PushAsyncPage(forgotPasswordPage);
+                    break;
+
+                case "test12":
+                    break;
+
+                case "test234":
+                    break;
             }
         }
     }
